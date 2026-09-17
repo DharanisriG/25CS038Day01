@@ -1,41 +1,40 @@
 package com.example.banking.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class User {
-    private int userid;
-    private String username;
-    private String accno;
+
+    @Id
+    private int id;
+
+    private String name;
     private double balance;
-    public User(){
-        
-    }
-    public User(int userid,String username,String accno,double balance){
-        this.userid = userid;
-        this.username = username;
-        this.accno = accno;
-        this.balance = balance;
+
+    public User() {
     }
 
-    public int getUserid() {
-        return userid;
+    public int getId() {
+        return id;
     }
-    public void setUserid(int userid) {
-        this.userid = userid;
+
+    public void setId(int id) {
+        this.id = id;
     }
-    public String getUsername() {
-        return username;
+
+    public String getName() {
+        return name;
     }
-    public void setUsername(String username) {
-        this.username = username;
+
+    public void setName(String name) {
+        this.name = name;
     }
-    public String getAccno() {
-        return accno;
-    }
-    public void setAccno(String accno) {
-        this.accno = accno;
-    }
+
     public double getBalance() {
         return balance;
     }
+
     public void setBalance(double balance) {
         this.balance = balance;
     }
