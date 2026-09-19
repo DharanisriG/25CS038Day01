@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Account Details</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+            background: #f3f7f2;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 30px;
+            color: #166534;
+        }
+
+        .header p {
+            margin-top: 8px;
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* Form Card */
+        .form-card {
+            background: #fffdf7;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(22, 101, 52, 0.10);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #334155;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #b7c9b5;
+            border-radius: 8px;
+            background: #f7faf5;
+            font-size: 16px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #166534;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.10);
+        }
+
+        /* Button */
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #166534;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #14532d;
+        }
+
+        /* Table Card */
+        .table-card {
+            margin-top: 25px;
+            background: #fffdf7;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(22, 101, 52, 0.10);
+        }
+
+        .table-title {
+            margin-bottom: 18px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #166534;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 14px;
+            background: #166534;
+            color: white;
+            text-align: left;
+            font-size: 15px;
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid #dbe5d8;
+            font-size: 15px;
+        }
+
+        tbody tr:hover {
+            background: #f1f8ef;
+        }
+
+        td:last-child {
+            color: #15803d;
+            font-weight: bold;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            body {
+                padding: 25px 12px;
+            }
+
+            .form-card,
+            .table-card {
+                padding: 20px;
+            }
+
+            .header h2 {
+                font-size: 25px;
+            }
+
+            th,
+            td {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <h2>Bank Account</h2>
+            <p>Manage your account details</p>
+        </div>
+
+
+        <!-- Form -->
+        <div class="form-card">
+
+            <div class="form-group">
+                <label for="holderName">
+                    Holder Name
+                </label>
+
+                <input
+                    type="text"
+                    id="holderName"
+                    placeholder="Enter holder name"
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="balance">
+                    Balance
+                </label>
+
+                <input
+                    type="number"
+                    id="balance"
+                    placeholder="Enter balance"
+                >
+            </div>
+
+
+            <button onclick="saveData()">
+                Save Account
+            </button>
+
+        </div>
+
+
+        <!-- Table -->
+        <div class="table-card">
+
+            <div class="table-title">
+                Account Details
+            </div>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Holder Name</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tableBody">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        let count = 0;
+
+
+        function saveData() {
+
+            const holderName =
+                document.getElementById("holderName").value;
+
+            const balance =
+                document.getElementById("balance").value;
+
+
+            // Validation
+            if (holderName === "" || balance === "") {
+
+                alert("Please enter Holder Name and Balance");
+
+                return;
+            }
+
+
+            // Increase serial number
+            count++;
+
+
+            // Get table
+            const tableBody =
+                document.getElementById("tableBody");
+
+
+            // Create new row
+            const row =
+                tableBody.insertRow();
+
+
+            // Add data
+            row.insertCell(0).innerText = count;
+
+            row.insertCell(1).innerText = holderName;
+
+            row.insertCell(2).innerText =
+                "₹ " + balance;
+
+
+            // Clear inputs
+            document.getElementById("holderName").value = "";
+
+            document.getElementById("balance").value = "";
+
+        }
+
+    </script>
+
+</body>
+</html>
